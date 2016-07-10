@@ -40,6 +40,11 @@ class User extends Model implements AuthenticatableContract,
     public function tickets(){
         return $this->hasMany(Ticket::class);
     }
+    /*
+
+    public function comments(){
+        return $this->hasMany(TicketComment::class);
+    }*/
 
     public function voted(){
         return $this->belongsToMany(Ticket::class,'ticket_votes')->withTimestamps();

@@ -54,6 +54,7 @@ class CommentsController extends Controller
 
             $comment = new TicketComment($request->all());
             $comment->user_id = $auth->user()->id;
+            //$auth->user()->comments()->save($comment);
             $ticket = Ticket::find($id);
             $ticket->comments()->save($comment);
 
