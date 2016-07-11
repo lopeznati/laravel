@@ -33,11 +33,18 @@
                         </a>
 
                         <a href="{{route('tickets.details',$ticket)}}">
-                            <span class="votes-count">{{count($ticket->voters)}} votos</span>
-                            - <span class="comments-count">{{count($ticket->comments)}} comentarios</span>.
+                           <!-- <span class="votes-count">{{count($ticket->voters)}} votos</span>
+                            <span class="comments-count">{{count($ticket->comments)}} comentarios</span>. -->
+
+
+                           <span class="votes-count">{{$ticket->num_votes}} votos</span>
+                             <span class="comments-count">{{$ticket->num_comments}} comentarios</span>.
                         </a>
 
                     <p class="date-t"><span class="glyphicon glyphicon-time"></span> {{$ticket->created_at->format('d/m/y h:ia')}}</p>
+
+                    Por {{$ticket->user->name}}
+
                     </p>
                 </div>
                     @endforeach

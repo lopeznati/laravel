@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Ticket;
+use App\Repository\TicketRepository;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 
@@ -16,13 +17,36 @@ class TicketsController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     *
      */
+
+    private $ticketRepository;
+
+
+    //asigno una instancia de TicketRepository
+
+    public function  __construct(TicketRepository $ticketRepository){
+        $this->ticketRepository=$ticketRepository;
+
+
+    }
+
+    
+
+    
     public function latest()
     {
         //
       //  $tickets=Ticket::all();
 
-        $tickets=Ticket::orderBy('created_at','DESC')->paginate(30);
+       /* $tickets=$this->selectTicketList()
+        ->orderBy('created_at','DESC')
+            ->paginate(30);
+        */
+
+        $tickets=$this->ticketRepository->paginateLatest();
+
         return view('tickets.list',compact('tickets'));
     }
 
@@ -38,6 +62,8 @@ class TicketsController extends Controller
         return view('tickets.list');
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,14 +72,23 @@ class TicketsController extends Controller
      */
     public function open()
     {
-        //
-        $tickets=Ticket::orderBy('created_at','DESC')->where('status','=','open')->paginate(30);
+        // $tickets=Ticket::orderBy('created_at','DESC')->with('user')->where('status','=','open')->paginate(30);
+/*
+        $tickets=$this->selectTicketList()
+            ->orderBy('created_at','DESC')
+           ->where('status','=','open')
+            ->paginate(30);*/
+        $tickets=$this->ticketRepository->paginateOpen();
         return view('tickets.list',compact('tickets'));
     }
     public function closed()
     {
         //
-        $tickets=Ticket::orderBy('created_at','DESC')->where('status','=','closed')->paginate(30);
+       /*$tickets=$this->selectTicketList()
+        ->orderBy('created_at','DESC')
+            ->where('status','=','closed')
+            ->paginate(30);*/
+        $tickets=$this->ticketRepository->paginateClosed();
         return view('tickets.list',compact('tickets'));
     }
 
@@ -67,7 +102,9 @@ class TicketsController extends Controller
     public function details($id)
     {
         //
-        $ticket=Ticket::find($id);
+        //$ticket=Ticket::find($id);
+
+        $ticket=$this->ticketRepository->find($id);
         return view('tickets.details',compact('ticket'));
     }
 

@@ -40,7 +40,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://duilio.me" target="_blank">duilio.me</a>
+                    <a class="navbar-brand" href="{{route('tickets.latest')}}">Home</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -49,9 +49,9 @@
                         <li role="presentation">
                             <a href="{{route('tickets.latest')}}">Recientes</a>
                         </li>
-                        <li role="presentation" class="active">
+                      <!--  <li role="presentation" class="active">
                             <a href="{{route('tickets.popular')}}">Populares</a>
-                        </li>
+                        </li> -->
                         <li role="presentation">
                             <a href="{{route('tickets.open')}}">Abiertas</a>
                         </li>

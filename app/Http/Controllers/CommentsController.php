@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class CommentsController extends Controller
@@ -40,7 +41,7 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Guard $auth,$id)
+    public function store(Request $request,Guard $auth=null,$id)
     {
         //
 
@@ -48,6 +49,7 @@ class CommentsController extends Controller
             'comment'=>'required|max:250',
             'link'=>'url'
         ]);
+
 
         if($auth->check()) {
 
