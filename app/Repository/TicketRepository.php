@@ -54,9 +54,14 @@ class TicketRepository extends BaseRepository
 
 
     }
-
-    public function find($id){
-        return Ticket::find($id);
+    
+    public  function  openNewTicket($auth,$title){
+        return $auth->tickets()->create([
+            'titulo'=>$title,
+            'status'=>'open'
+        ]);
     }
+
+
 
 }

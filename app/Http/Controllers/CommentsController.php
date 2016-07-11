@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Entities\Ticket;
 use App\Entities\TicketComment;
+use App\Repository\CommentRepository;
+use App\Repository\TicketRepository;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 
@@ -19,6 +21,22 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $commentRepository;
+    private $TicketRepository;
+
+
+    //asigno una instancia de CommentRepository
+
+    public function  __construct(CommentRepository $commentRepository, TicketRepository $ticketRepository){
+
+
+        $this->commentRepository=$commentRepository;
+        $this->TicketRepository=$ticketRepository;
+
+
+    }
+
     public function submit(Request $request)
     {
         //
@@ -41,7 +59,7 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Guard $auth=null,$id)
+    public function store(Request $request,Guard $auth,$id)
     {
         //
 
@@ -50,6 +68,15 @@ class CommentsController extends Controller
             'link'=>'url'
         ]);
 
+        $ticket=$this->TicketRepository->find($id);
+        
+        $this->commentRepository->create(
+            $ticket,
+            $auth->user(),
+            $request->get('comment'),
+            $request->get('link')
+        );
+
 
         if($auth->check()) {
 
@@ -57,7 +84,7 @@ class CommentsController extends Controller
             $comment = new TicketComment($request->all());
             $comment->user_id = $auth->user()->id;
             //$auth->user()->comments()->save($comment);
-            $ticket = Ticket::find($id);
+            //$ticket = Ticket::find($id);
             $ticket->comments()->save($comment);
 
             // $comment->ticket_id=$ticket->id;

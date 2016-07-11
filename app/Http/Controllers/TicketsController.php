@@ -137,10 +137,11 @@ class TicketsController extends Controller
 
         //cargo por la relacion hasmany
 
-        $ticket=$auth->user()->tickets()->create([
-            'titulo'=>$request->get('titulo'),
-            'status'=>'open'
-        ]);
+        $ticket=$this->ticketRepository->openNewTicket(
+            $auth->user(),
+            $request->get('titulo'));
+
+        
         //dd($request->all());
         return Redirect::route('tickets.details',$ticket->id);
 

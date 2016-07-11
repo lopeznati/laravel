@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Ticket;
+use App\Repository\TicketRepository;
+use App\Repository\VoteRepository;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 
@@ -17,6 +19,19 @@ class VotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $ticketRepository;
+    /**
+     * @var VoteRepository
+     */
+    private $voteRepository;
+
+    public function  __construct(TicketRepository $ticketRepository, VoteRepository $voteRepository){
+        $this->ticketRepository=$ticketRepository;
+
+
+        $this->voteRepository = $voteRepository;
+    }
     public function index()
     {
         //
@@ -86,9 +101,11 @@ class VotesController extends Controller
 
     public function submit($id,Guard $auth)
     {
-        //
-        $ticket=Ticket::find($id);
-        $auth->user()->vote($ticket);
+        //$ticket=Ticket::find($id);
+        $ticket=$this->ticketRepository->find($id);
+
+        $this->voteRepository->vote($auth->user(),$ticket);
+        //$auth->user()->vote($ticket);
 
 
 
@@ -100,8 +117,10 @@ class VotesController extends Controller
     public function destroy($id,Guard $auth)
     {
         //
-        $ticket=Ticket::find($id);
-        $auth->user()->unvote($ticket);
+        //$ticket=Ticket::find($id);
+        $ticket=$this->ticketRepository->find($id);
+        $this->voteRepository->unvote($auth->user(), $ticket);
+        //$auth->user()->unvote($ticket);
         return redirect()->back();;
     }
 }

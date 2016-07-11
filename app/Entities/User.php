@@ -55,6 +55,9 @@ class User extends Model implements AuthenticatableContract,
 
        // return TicketVote::where(['user-id'=>$this->id,'ticket_id'=>$ticket->id])->count();
     }
+    
+    
+    /*
 
     public function vote(Ticket $ticket){
        if($this->hasvote($ticket)) {
@@ -71,7 +74,7 @@ class User extends Model implements AuthenticatableContract,
         $this->voted()->detach($ticket);
         return true;
 
-    }
+    }*/
 
 
 
