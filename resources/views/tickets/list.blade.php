@@ -17,7 +17,7 @@
 
                 @foreach($tickets as $ticket)
 
-                <div data-id="25" class="well well-sm request">
+                <div data-id="{{$ticket->id}}" class="well well-sm ticket">
                     <h4 class="list-title">
                        {{$ticket->titulo}}
                         <span class="label label-info absolute">{{trans('tickets.status.'.$ticket->status)}}</span>
@@ -59,4 +59,13 @@
         </div>
     </div>
 </div>
+
+    {{Form::open(['id'=>'form-vote','route'=>['votes.submit',':id'],'method'=>'POST'])}}
+
+    {{Form::close()}}
+
+
+    {{Form::open(['id'=>'form-unvote','route'=>['votes.destroy',':id'],'method'=>'DELETE'])}}
+
+    {{Form::close()}}
 @endsection('content')

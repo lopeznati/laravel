@@ -99,13 +99,18 @@ class VotesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function submit($id,Guard $auth)
+    public function submit($id,Guard $auth,Request $request)
     {
         //$ticket=Ticket::find($id);
         $ticket=$this->ticketRepository->find($id);
 
-        $this->voteRepository->vote($auth->user(),$ticket);
+        $success=$this->voteRepository->vote($auth->user(),$ticket);
         //$auth->user()->vote($ticket);
+
+        if($request->ajax()){
+            return response()->json(compact('success'));
+
+        }
 
 
 
@@ -114,13 +119,18 @@ class VotesController extends Controller
 
         return redirect()->back();
     }
-    public function destroy($id,Guard $auth)
+    public function destroy($id,Guard $auth,Request $request)
     {
         //
         //$ticket=Ticket::find($id);
         $ticket=$this->ticketRepository->find($id);
-        $this->voteRepository->unvote($auth->user(), $ticket);
+        $success=$this->voteRepository->unvote($auth->user(), $ticket);
         //$auth->user()->unvote($ticket);
+
+        if($request->ajax()){
+            return response()->json(compact('success'));
+
+        }
         return redirect()->back();;
     }
 }

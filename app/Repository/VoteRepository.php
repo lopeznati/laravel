@@ -26,6 +26,9 @@ class VoteRepository
 
     public function unvote(User $user,Ticket $ticket){
 
+        if(!$user->hasvote($ticket)) {
+            return false;
+        }
         $user->voted()->detach($ticket);
         return true;
 
