@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TicketVotesTableSeeder extends BaseSeeder
+class TicketVotesTableSeeder extends \Styde\Seeder\Seeder
 {
     /**
      * Run the database seeds.
@@ -25,6 +25,18 @@ class TicketVotesTableSeeder extends BaseSeeder
         return [
             'user_id'=>rand(1,51),
             'ticket_id'=>rand(1,51)
+
+            //'user_id'=>createFrom('UserTableSeeder')->id
+        ];
+    }
+
+    public function getDummyData(\Faker\Generator $faker, array $customValues = array())
+    {
+        // TODO: Implement getDummyData() method.
+
+        return [
+            'user_id'=>$this->random('User')->id,
+            'ticket_id'=>$this->random('Ticket')->id,
 
             //'user_id'=>createFrom('UserTableSeeder')->id
         ];

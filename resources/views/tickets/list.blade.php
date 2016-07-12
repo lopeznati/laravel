@@ -25,13 +25,16 @@
                     </h4>
                     <p>
                         @if(Auth::check())
+
                         <a href="#" class="btn btn-primary btn-vote" title="Votar por este tutorial">
                             <span class="glyphicon glyphicon-thumbs-up"></span> Votar
                         </a>
 
-                        <a href="#" class="btn btn-hight btn-unvote hide">
+
+                        <a href="#" class="btn btn-primary btn-unvote hidden">
                             <span class="glyphicon glyphicon-thumbs-down"></span> No votar
                         </a>
+
                         @endif
 
                         <a href="{{route('tickets.details',$ticket)}}">
@@ -60,12 +63,12 @@
     </div>
 </div>
 
-    {{Form::open(['id'=>'form-vote','route'=>['votes.submit',':id'],'method'=>'POST'])}}
+    {!!  Form::open(['id'=>'form-vote','route'=>['votes.submit',':id'],'method'=>'POST'])!!}
 
-    {{Form::close()}}
+{!!Form::close()!!}
 
 
-    {{Form::open(['id'=>'form-unvote','route'=>['votes.destroy',':id'],'method'=>'DELETE'])}}
+{!!Form::open(['id'=>'form-unvote','route'=>['votes.destroy',':id'],'method'=>'DELETE'])!!}
 
-    {{Form::close()}}
+{!!Form::close()!!}
 @endsection('content')

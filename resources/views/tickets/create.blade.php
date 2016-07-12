@@ -14,6 +14,9 @@
                 <div class="form-group">
                     {!! Form::label('titulo','Titulo:') !!}
                     {!! Form::textarea('titulo',null,['class'=>'form-control', 'rows'=>'4','cols'=>'50','placeholder'=>'Describe brevemente la solicitud']) !!}
+                    {!! Form::text('link') !!}
+
+
 
 
 

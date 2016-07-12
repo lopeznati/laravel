@@ -8,7 +8,7 @@ use Faker\Factory as Faker;
 use Faker\Generator;
 
 
-class UserTableSeeder extends BaseSeeder
+class UserTableSeeder extends \Styde\Seeder\Seeder
 {
     /**
      * Run the database seeds.
@@ -48,8 +48,21 @@ class UserTableSeeder extends BaseSeeder
        User::create([
          'name'=>'natali',
          'email'=>'nati@gmail.com',
-         'password'=>bcrypt('admin')
+         'password'=>bcrypt('admin'),
+           'role'=>'admin'
 
        ]);
      }
+
+    public function getDummyData(Generator $faker, array $customValues = array())
+    {
+        // TODO: Implement getDummyData() method.
+
+        return [
+            'name'=>$faker->name,
+            'email'=>$faker->email,
+            'password'=>bcrypt('secret'),
+            'role'=>'user'
+        ];
+    }
 }

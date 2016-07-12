@@ -55,10 +55,11 @@ class TicketRepository extends BaseRepository
 
     }
     
-    public  function  openNewTicket($auth,$title){
+    public  function  openNewTicket($auth,$title,$link=''){
         return $auth->tickets()->create([
             'titulo'=>$title,
-            'status'=>'open'
+            'status'=>'open',
+            'link'=>!empty($link) ? 'closed' : 'open'
         ]);
     }
 

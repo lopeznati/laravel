@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "94974fe598b9f9193047514f0cd6209f",
-    "content-hash": "0016d6a688c5e54bf9611945ea0d6be4",
+    "hash": "85ef4d2b892e27055b8d1a6e4d15a29e",
+    "content-hash": "12efdf176326044e550dc7b340f14fd9",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -219,29 +219,33 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.6.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3|^7.0"
+                "php": ">=5.3.3"
             },
             "require-dev": {
-                "ext-intl": "*",
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
+            "suggest": {
+                "ext-intl": "*"
+            },
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -263,7 +267,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2016-04-29 12:21:54"
+            "time": "2015-05-29 06:29:14"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1049,6 +1053,53 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "styde/seeder",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StydeNet/seeder.git",
+                "reference": "7064170e2d6747de6803a0c9e53de460dbae99da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StydeNet/seeder/zipball/7064170e2d6747de6803a0c9e53de460dbae99da",
+                "reference": "7064170e2d6747de6803a0c9e53de460dbae99da",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "1.5.*@dev",
+                "laravel/framework": "5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Styde\\Seeder\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Duilio Palacios",
+                    "email": "admin@styde.net",
+                    "homepage": "https://styde.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel's improved seeders",
+            "homepage": "https://styde.net",
+            "keywords": [
+                "laravel",
+                "seeder"
+            ],
+            "time": "2016-01-22 13:50:19"
         },
         {
             "name": "swiftmailer/swiftmailer",

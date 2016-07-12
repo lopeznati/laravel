@@ -17,6 +17,11 @@
 
                 @endif
 
+                @if($ticket->link)
+
+                <a href="{{$ticket->link}}" target="_blank">Ver recurso</a>
+                @endif
+
 
                 @if(\Illuminate\Support\Facades\Session::has('success'))
                     <div class="alert alert-success">
@@ -106,6 +111,14 @@
                     <p>
                         <a href="{{$comment->link}}" rel="nofollow" target="_blank">{{$comment->link}}</a>
                     </p>
+
+                    @can('selectResource', $ticket)
+                        {!! Form::open(['route' => ['tickets.select', $ticket, $comment]]) !!}
+                        <p>
+                            <button type="submit" class="btn btn-primary">Seleccionar tutorial</button>
+                        </p>
+                        {!! Form::close() !!}
+                    @endcan
                     @endif
                 <p class="date-t"><span class="glyphicon glyphicon-time"></span>{{$comment->created_at->format('d/m/y h:ia')}}</p>
             </div>

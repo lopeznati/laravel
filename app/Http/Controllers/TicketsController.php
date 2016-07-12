@@ -32,6 +32,17 @@ class TicketsController extends Controller
 
     }
 
+    public  function  select($ticketid,$commentid){
+        $ticket=$this->ticketRepository->find($ticketid);
+        
+        $this->authorize('selectResource',$ticket);
+        $ticket->assignResource($commentid);
+
+        return Redirect::back();
+
+
+    }
+
     
 
     
@@ -124,7 +135,8 @@ class TicketsController extends Controller
     {
         //
         $this->validate($request,[
-            'titulo'=>'required|max:120'
+            'titulo'=>'required|max:120',
+            'link'=>'url',
         ]);
         /*
 
@@ -140,6 +152,7 @@ class TicketsController extends Controller
         $ticket=$this->ticketRepository->openNewTicket(
             $auth->user(),
             $request->get('titulo'));
+        $request->get('link');
 
         
         //dd($request->all());

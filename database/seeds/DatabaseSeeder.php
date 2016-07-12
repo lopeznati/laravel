@@ -2,14 +2,34 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Styde\Seeder\BaseSeeder;
 
-class DatabaseSeeder extends Seeder
+class DatabaseSeeder extends BaseSeeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
+    protected  $truncate=array(
+
+        'users',
+        'password_resets',
+        'tickets',
+        'ticket_votes',
+        'ticket_comments'
+
+    );
+
+    protected  $seeders=array(
+        'User',
+        'Ticket',
+        'TicketVotes',
+        'TicketComments'
+
+    );
+
+    /*
     public function run()
     {
         Model::unguard();
@@ -48,4 +68,6 @@ class DatabaseSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS =1');
     }
+
+    */
 }
